@@ -1,0 +1,27 @@
+{
+  "name": "fullstackapplication",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MERNSTACK2024MORNING/FullStackApplication.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/MERNSTACK2024MORNING/FullStackApplication/issues"
+  },
+  "homepage": "https://github.com/MERNSTACK2024MORNING/FullStackApplication#readme",
+  "dependencies": {
+    "@prisma/client": "^6.2.1",
+    "express": "^4.21.2",
+    "fullstackapplication": "file:",
+    "prisma": "^6.2.1"
+  }
+}
