@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/main.js"
   },
   "repository": {
     "type": "git",
@@ -13,15 +13,20 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
+  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/MERNSTACK2024MORNING/FullStackApplication/issues"
   },
   "homepage": "https://github.com/MERNSTACK2024MORNING/FullStackApplication#readme",
   "dependencies": {
     "@prisma/client": "^6.2.1",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "fullstackapplication": "file:",
+    "jsonwebtoken": "^9.0.2",
+    "nodemon": "^3.1.9",
     "prisma": "^6.2.1"
   }
 }
