@@ -36,6 +36,37 @@ const register = async (req, res) => {
 };
 
 
+//Login
+const login = async(req,res)=>{
+  try {
+    const {email,password} = req.body;
+    const user = await prisma.user.findUnique({
+      where:{
+        email
+      }
+    })
+    if(!user){
+      res.status(400).json({
+        message: "fadlan email ama password ka mid ayaa kaa qaldan"
+      })
+    }
+    const isPasswordValid = await bcrypt.compare(password, user.password)
+    if(!isPasswordValid)return
+    const token = jwt.sign(
+      {userId: user.id},
+      process.env.JWT_SECRET,
+      {expiresIn: '1h'}
+    )
+    res.status(200).json({
+      message: "Login Successfully",
+      token
+    })
+  } catch (error) {
+    
+  }
+};
+
+
 const getUsers = async(req,res)=>{
       try {
             const users = await prisma.user.findMany();
@@ -47,5 +78,6 @@ const getUsers = async(req,res)=>{
 
 module.exports ={
       register,
-      getUsers
+      getUsers,
+      login
 }
