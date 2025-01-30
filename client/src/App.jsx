@@ -1,11 +1,12 @@
 import React from 'react'
 import LoginPage from './pages/LoginPage'
+import DashboardPage from './pages/DashboardPage'
 
 const App = () => {
   return (
     <div>
-      <h1 className='text-center text-3xl text-blue-600'>Hello World Tailwindcss v4</h1>
-      <LoginPage />
+      {/* <LoginPage /> */}
+      <DashboardPage />
     </div>
   )
 }

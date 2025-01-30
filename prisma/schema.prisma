@@ -30,3 +30,27 @@ model Admin {
   updatedAt DateTime @updatedAt @map("updated_at")
   @@map("admins")
 }
+
+model Student{
+  id Int @id @default(autoincrement())
+  firstName String @map("first_name")
+  lastName String @map("last_name")
+  email String @unique
+  phoneNumber String? @map("phone_number")
+  registrationDate DateTime @default(now()) @map("registration_date")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  @@map("students")
+}
+
+model Class {
+  id Int @id @default(autoincrement())
+  className String @map("class_name")
+  classCode String @unique @map("class_code")
+  instructorName String @map("instructor_name")
+  scheduleTime String? @map("schedule_time")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("classes")
+}
