@@ -3,7 +3,11 @@ const router = express.Router();
 const adminController = require('../controllers/adminController');
 const {authenticateToken,isAdmin} = require('../middleware/authMiddlware');
 
-router.post('/register',adminController.createAdmin); 
-router.post('/login',adminController.adminLogin); 
+router.post('/',authenticateToken,isAdmin,adminController.createAdmin); 
+router.post('/login',authenticateToken,isAdmin,adminController.adminLogin); 
+router.get('/',authenticateToken,isAdmin,adminController.getAllAdmins); 
+router.put('/:id',authenticateToken,isAdmin,adminController.updateAdmin); 
+// router.get('/',authenticateToken,isAdmin,adminController.getAllAdmins); 
+ 
 
 module.exports = router;

@@ -83,3 +83,28 @@ exports.adminLogin = async(req,res)=>{
             
       }
 }
+
+// updat admin
+exports.updateAdmin = async(req,res)=>{
+      try {
+            const {id} = req.params;
+            const {username,password} = req.body;
+            const data = {};
+            if(username) data.username = username
+            if(password) data.password =await bcrypt.hash(password,10)
+const adminUpdate = await prisma.admin.update({
+      where:{id:Number(id)},
+      data,
+      select:{
+            id:true,
+            username:true,
+            createdAt: true
+      }
+})
+res.status(200).json({
+      message: `Successfully updated a admin = ${id} `
+})
+            } catch (error) {
+            
+      }
+}
