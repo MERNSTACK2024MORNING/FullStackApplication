@@ -4,6 +4,7 @@ const jwt  = require('jsonwebtoken');
 const prisma = new PrismaClient();
 
 exports.getAllAdmins = async(req,res)=>{
+     try {
       const admins = await prisma.admin.findMany({
             select:{
                   id:true,
@@ -12,6 +13,9 @@ exports.getAllAdmins = async(req,res)=>{
             }
       })
       res.json(admins)
+     } catch (error) {
+      console.log('error fetching admins',error)
+     }
 }
 
 exports.createAdmin = async(req,res)=>{
@@ -108,3 +112,20 @@ res.status(200).json({
             
       }
 }
+
+// Delet
+exports.deleteAdmin = async(req,res)=>{
+      try {
+            const {id} = req.params;
+            const admin = await prisma.admin.delete({
+                  where:{
+                        id:Number(id)
+                  }
+            })
+            res.status(200).json({
+                  message: `Successfully deleted a admin = ${id}`
+            })
+      } catch (error) {
+            console.log('error deleting admin',error)
+      }
+};

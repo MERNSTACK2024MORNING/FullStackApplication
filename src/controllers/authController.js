@@ -1,7 +1,7 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const bcrypt = require('bcryptjs');
-const salt = bcrypt.genSaltSync(10);
+// const salt = bcrypt.genSaltSync(10);
 const jwt = require('jsonwebtoken');
 const register = async (req, res) => {
   try {
@@ -14,7 +14,7 @@ const register = async (req, res) => {
         message: "User already exists",
       });
     }
-    const hashedPassword = await bcrypt.hashSync(password,salt)
+    const hashedPassword = await bcrypt.hash(password,10)
     const user = await prisma.user.create({
       data: {
         email,
@@ -25,7 +25,7 @@ const register = async (req, res) => {
     const token = jwt.sign(
       {userId: user.id},
       process.env.JWT_SECRET,
-      {expiresIn: '1h'}
+      {expiresIn: '1d'}
     );
 
     res.status(201).json({
@@ -55,7 +55,7 @@ const login = async(req,res)=>{
     const token = jwt.sign(
       {userId: user.id},
       process.env.JWT_SECRET,
-      {expiresIn: '1h'}
+      {expiresIn: '1d'}
     )
     res.status(200).json({
       message: "Login Successfully",
