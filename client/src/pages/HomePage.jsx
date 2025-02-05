@@ -81,9 +81,34 @@ const handleScroll = ()=>{
 }
             const sections = ['hero','features','techStack','testimonials'];
             const sectionElements = sections.map(section =>section === 'hero'? document.querySelector('.hero-section'):document.getElementById(section))
-      })
+// current section Page 
+const currentSection = sectionElements.findIndex(element =>{
+      if(!element)return false;
+      const rect  = element.getBoundingClientRect();
+      return rect.top <= 100 && rect.bottom >=100;
+})
+if(currentSection !==-1){
+      setActiveSection(sections[currentSection]);
+}
+window.addEventListener('scroll',handleScroll);
+return ()=> window.addEventListener('scroll',handleScroll)
+},[])
 
-      return (
+// Scroll to top with smooth aniamtion
+const scrollToTop = ()=>{
+      window.scrollTo({
+            top:0,
+            behavior: 'smooth'
+      })
+};
+
+// animation
+const fadeInUp = {
+      hidden: {opacity:0,y:20},
+      visible: {opacity:1,y:0}
+} 
+
+return (
             <div></div>
       )
 }
