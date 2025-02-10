@@ -148,6 +148,67 @@ const HomePage = () => {
                   </nav>
 
                   {/* Right side Nagivation to Dots with tooltips */}
+                  <div className="fixed right-8 top-1/2 transform translate-y-1/2 z-50 hidden lg:flex flex-col items-center space-y-4 dot-nav">
+                  <button 
+                  onClick={()=> window.scrollTo({top:0, behavior:smooth})}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                        activeSection === 'hero'? 'bg-primary-600 w-4 h-4': 'bg-gray-400 hover:bg-primary-400'
+                        }`}
+                        title='Top'
+                  >
+                  </button>
+                  <button
+                  onClick={()=> scrollToSection(featureRef)}
+                  className={`w-3 h-4 rounded-full transition-all duration-300 ${
+                        activeSection === 'features'? 'bg-primary-600 w-4 h-4':'bg-gray-400 hover:bg-primary-400'
+                        }`}
+                        title='Features'
+                  >
+
+                  </button>
+                  <button
+                  onClick={()=> scrollToSection(techStackRef)}
+                  className={`w-3 h-4 rounded-full transition-all duration-300 ${
+                        activeSection === 'techstack'? 'bg-primary-600 w-4 h-4':'bg-gray-400 hover:bg-primary-400'
+                        }`}
+                        title='Tech Stack'
+                  >
+
+                  </button>
+                  <button
+                  onClick={()=> scrollToSection(testimonialsRef)}
+                  className={`w-3 h-4 rounded-full transition-all duration-300 ${
+                        activeSection === 'testimonials'? 'bg-primary-600 w-4 h-4':'bg-gray-400 hover:bg-primary-400'
+                        }`}
+                        title='Testimonials'
+                  >
+
+                  </button>
+                  <button
+                  onClick={()=> scrollToSection(contactRef)}
+                  className={`w-3 h-4 rounded-full transition-all duration-300 ${
+                        activeSection === 'contact'? 'bg-primary-600 w-4 h-4':'bg-gray-400 hover:bg-primary-400'
+                        }`}
+                        title='contact'
+                  >
+                  </button>
+                  </div>
+                  {/* Add pt-16 to account for fixed navbar */}
+                  <div className="pt-1">
+                        {/* hero Section with animation */}
+                        <motion.section
+                        .section
+                        initial = 'hidden'
+                        animate = 'visible'
+                        variants={fadeInUp}
+                        transition={{duration:0.6}}
+                        className='hero-section relative bg-gradient-to-b from-primary-900 to-primary-700 text-white py-32'
+                        >
+                              <div className="max-w7xl mx-auto px-4 sm:px-6 lg:px-8">
+                                    
+                              </div>
+                        </motion.section>
+                  </div>
             </div>
       )
 }
