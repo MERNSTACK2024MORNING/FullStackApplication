@@ -205,7 +205,7 @@ const HomePage = () => {
                         className='hero-section relative bg-gradient-to-b from-primary-900 to-primary-700 text-white py-32'
                         >
                               <div className="max-w7xl mx-auto px-4 sm:px-6 lg:px-8">
-                                    
+                                    {/* Continue insha allah next time */}
                               </div>
                         </motion.section>
                   </div>
