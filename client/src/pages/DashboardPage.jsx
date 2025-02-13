@@ -8,7 +8,7 @@ import Admins from '../components/Admins';
 
 const DashboardPage = () => {
   return (
-    <div>DashboardPage</div>
+    <div>Hello World Dashboard</div>
   )
 }
 

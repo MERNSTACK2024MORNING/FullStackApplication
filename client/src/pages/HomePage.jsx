@@ -197,7 +197,6 @@ const HomePage = () => {
                   <div className="pt-1">
                         {/* hero Section with animation */}
                         <motion.section
-                        .section
                         initial = 'hidden'
                         animate = 'visible'
                         variants={fadeInUp}
@@ -205,9 +204,94 @@ const HomePage = () => {
                         className='hero-section relative bg-gradient-to-b from-primary-900 to-primary-700 text-white py-32'
                         >
                               <div className="max-w7xl mx-auto px-4 sm:px-6 lg:px-8">
-                                    {/* Continue insha allah next time */}
+                                    <div className="text-center">
+                                          <h1 className="text-4xl md:text-6xl font-bold mb-6">Wlecome to Muumin Academy Technology</h1>
+                                          <p className='text-xl md:text-2xl mb-8 text-gray-200'>
+                                                Empowering students with cutting-edge technology education
+                                          </p>
+                                          <Link
+                                          to='/login'
+                                          className='inline-flex items-center px-6 py-3 text-lg font-medium rounded-md bg-white text-primary-900 hover:bg-gray-100'
+                                          >
+                                        Get Started
+                                        <ArrowRightIcon className='ml-2 h-5 w-5'/>
+                                          </Link>
+                                    </div>
                               </div>
                         </motion.section>
+
+                        {/* Tech stack Section with scroll Reveal */}
+                        <motion.section
+                        initial = 'hidden'
+                        whileInView="visible"
+                        viewport={{once:true, margin:'-100px'}}
+                        variants={fadeInUp}
+                        transition={{duration:0.6}}
+                        id='techStack'
+                        ref={techStackRef}
+                        className='py-20 bg-gray-100 scroll-mt-16'
+                        >
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                              <h2 className="text-3xl font-bold text-center mb-12">
+                                    Our Technology Stack
+                              </h2>
+                              <div className="grid grid-cols-3 md:grid-cols-5 gap-8">
+                                    {
+                                          techStack.map((tech)=>(
+                                                <motion.div
+                                                key={tech.name}
+                                                whileHover={{scale:1.05}}
+                                                className='flex flex-col items-center p-4 bg-white shadow-md transition-all duration-300 hover:shadow-lg'
+                                                >
+                                                 <div className="relative w-16 h-16 mb-4">
+                                                      <img src={tech.icon} alt=""
+                                                      className='w-full h-full object-contain'
+                                                      style={{filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))'}}
+                                                      />
+                                                 </div>
+                                                 <span className='text-sm font-medium' style={{color:tech.color}}>{tech.name}</span>
+                                                </motion.div>
+                                          ))
+                                    }
+                              </div>
+                        </div>
+                        </motion.section>
+
+                        {/* Testimonials */}
+                        <motion.section
+                        initial='hidden'
+                        whileInView='visible'
+                        viewport={{once:true, margin:'-100px'}}
+                        variants={fadeInUp}
+                        transition={{duration:0.6}}
+                        id='testimonials'
+                        ref={testimonialsRef}
+                        className='py-20 scroll-mt-16'
+                        >
+                              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                              <h2 className="text-3xl font-bold text-center mb-12">What our student Say</h2>
+                              <div className="grid grid-cols-1 md:grid-cols-3 gap-">
+                                    {
+                                          testimonals.map((testimonal)=>(
+                                                <div className="p-6 bg-white rounded-lg shadow-md"
+                                                key={testimonal.name}
+                                                >
+                                                <div className="flex items-center mb-4">
+                                                      <img src={testimonal.image} alt={testimonal.name} className='h-12 w-12 rounded-full mr-4' />
+                                                      <div className="">
+                                                            <h4 className="font-semibold">{testimonal.name}</h4>
+                                                            <p className='text-sm text-gray-600'>{testimonal.role}</p>
+                                                      </div>
+                                                </div>
+                                                <p className='text-gray-600'>{testimonal.quote}</p>
+                                                </div>
+                                          ))
+                                    }
+                              </div>
+                              </div>
+                        </motion.section>
+
+                        {/* Footer Section */}
                   </div>
             </div>
       )

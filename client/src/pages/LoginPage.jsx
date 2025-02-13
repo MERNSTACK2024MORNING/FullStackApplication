@@ -1,6 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { EnvelopeIcon, LockClosedIcon } from '@heroicons/react/24/outline'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 const LoginPage = () => {
+      const navigate = useNavigate();
+      const [formData, setFormData] = useState({
+            email: '',
+            password: ''
+      });
+
+      // Handdle Change Function
+      const handleChange = (e) => {
+            setFormData({
+                  ...formData,
+                  [e.target.name]: e.target.value
+            });
+
+            // Handle Summit Function
+      }
+      const handleSubmit = async (e) => {
+            e.preventDefault();
+            try {
+                  const response = await axios.post('http://localhost:3000/api/auth/login', formData)
+                  localStorage.setItem('token', response.data.token)
+                  console.log(response)
+                  navigate('/dashboard')
+            } catch (error) {
+
+            }
+      }
       return (
             <div className='fixed inset-0 flex items-center justify-center bg-gray-900'>
                   <div className="w-full max-w-md px-4">
@@ -17,7 +45,7 @@ const LoginPage = () => {
                                     </div>
                               </div>
                               <h2 className='mb-6 text-center text-2xl sm:text-3xl font-bold tracking-tight text-gray-900'>Sign in to your account</h2>
-                              <form className='spce-y-4'>
+                              <form className='spce-y-4' onSubmit={handleSubmit}>
                                     <div className="relative">
                                           <div className="absolute inset-0 left-0 pl-3 flex items-center pointer-events-none">
                                                 <EnvelopeIcon className='h-5 w-5 text-gray-500' />
@@ -29,9 +57,12 @@ const LoginPage = () => {
                                                 autoComplete='email'
                                                 required
                                                 placeholder='ridwaan@ridwaan.com'
-                                                type="email" />
+                                                type="email" 
+                                                onChange={handleChange}
+                                                value={formData.email}
+                                                />
                                     </div>
-                  
+
                                     <div className="relative">
                                           <div className="absolute inset-0 left-0 pl-3 flex items-center pointer-events-none">
                                                 <LockClosedIcon className='h-5 w-5 text-gray-500' />
@@ -43,7 +74,10 @@ const LoginPage = () => {
                                                 autoComplete='password'
                                                 required
                                                 placeholder='****************'
-                                                type="password" />
+                                                type="password"
+                                                onChange={handleChange}
+                                                value={formData.password}
+                                                />
                                     </div>
                                     <div className="">
                                           <button className='w-full bg-blue-600 p-2 rounded-lg text-2xl text-white font-bold tracking-wider mt-2'>Sign in</button>
